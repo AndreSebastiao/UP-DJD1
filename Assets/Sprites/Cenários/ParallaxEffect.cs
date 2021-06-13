@@ -13,7 +13,6 @@ public class ParallaxEffect : MonoBehaviour
     private float textureUnitSizeX;
     private float textureUnitSizeY;
 
-    // Start is called before the first frame update
     void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -24,13 +23,13 @@ public class ParallaxEffect : MonoBehaviour
         textureUnitSizeY = texture.height / sprite.pixelsPerUnit;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
         transform.position += new Vector3(deltaMovement.x * parallaxeffectMultiplier.x, deltaMovement.y * parallaxeffectMultiplier.y);
         lastCameraPosition = cameraTransform.position;
 
+        //Opção Selecionada faz com que o mapa crie na horizontal infinitamente
         if (infiniteHorizontal)
         {
             if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
@@ -40,6 +39,7 @@ public class ParallaxEffect : MonoBehaviour
             }
         }
 
+        //Opção Selecionada faz com que o mapa crie na vertical infinitamente
         if (infiniteVertical)
         {
             if (Mathf.Abs(cameraTransform.position.y - transform.position.y) >= textureUnitSizeY)
